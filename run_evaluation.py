@@ -58,6 +58,8 @@ THE_TOPICS = {
 }
 
 from rank_gpt import run_retriever, sliding_windows, write_eval_file
+# LuceneSearcher == BM25
+# https://github.com/castorini/pyserini
 from pyserini.search import LuceneSearcher, get_topics, get_qrels
 from tqdm import tqdm
 import tempfile
@@ -65,7 +67,9 @@ import os
 import json
 import shutil
 
-openai_key = os.environ.get("OPENAI_API_KEY", None)
+# openai_key = os.environ.get("OPENAI_API_KEY", None)
+# 本地llama2量化API
+openai_key = "sk-no-key-required"
 
 for data in ['dl19', 'dl20', 'covid', 'nfc', 'touche', 'dbpedia', 'scifact', 'signal', 'news', 'robust04']:
     print('#' * 20)

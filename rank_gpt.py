@@ -19,6 +19,11 @@ class SafeOpenai:
         self.key = keys
         self.key_id = start_id or 0
         self.key_id = self.key_id % len(self.key)
+        # self.openai = openai.api_base(
+        #     base_url="http://localhost:8080/v1", # local llama API server
+        #     api_key=self.key[self.key_id % len(self.key)],
+        # )
+        openai.api_base = "http://localhost:8080/v1"
         openai.proxy = proxy
         openai.api_key = self.key[self.key_id % len(self.key)]
         self.api_key = self.key[self.key_id % len(self.key)]
@@ -256,12 +261,13 @@ def write_eval_file(rank_results, file):
 
 def main():
     from pyserini.search import LuceneSearcher
+    # from pyserini.search import SimpleSearcher
     from pyserini.search import get_topics, get_qrels
     import tempfile
 
-    api_key = None  # Your openai key
+    api_key = "sk-no-key-required"  # Your openai key. If local API server is used, this key is not required, and leave "sk-no-key-required" as it is
 
-    searcher = LuceneSearcher.from_prebuilt_index('msmarco-v1-passage')
+    searcher = LuceneSearcher.from_prebuilt_index('msmarco-v1-passage') # 如果下载慢，可以手动下载放到服务器指定目录，然后通过SimpleSearcher('/path/to/your/index')去拿
     topics = get_topics('dl19-passage')
     qrels = get_qrels('dl19-passage')
 
