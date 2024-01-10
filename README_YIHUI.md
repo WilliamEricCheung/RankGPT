@@ -2,7 +2,10 @@
 - llama2在huggingface有hf和原版模型，需要国外邮箱申请下载权限
 - llama2.cpp项目里面提供了很多开源量化版本
 
-## 项目结构
+## 本复现代码仓库
+https://github.com/WilliamEricCheung/RankGPT
+
+## 复现相关项目结构
 1. RankGPT 原论文用GPT3.5实现，请求本地server https://github.com/sunnweiwei/RankGPT
 2. llama2 GGUF量化版本，提供模型https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGUF
 3. llama2.cpp 量化推理，用于启动本地server https://github.com/ggerganov/llama.cpp
